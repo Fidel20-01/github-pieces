@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Piezas de GitHub — Práctica 7 (ALQF)</title>
+  <style>
+    :root{--bg:#f6fbfb;--card:#ffffff;--muted:#6b7a7a;--accent:#0e7c86;--success:#2e8b57;--danger:#d64545}
+    body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; margin:0; background:linear-gradient(180deg,#f6fbfb 0%, #eef6f6 100%); color:#07323a}
+    header{padding:28px 36px;border-bottom:1px solid #e6efef}
+    .container{max-width:1100px;margin:28px auto;padding:0 20px}
+    h1{margin:0;font-size:24px}
+    p.lead{color:var(--muted);margin:8px 0 18px}
+    .grid{display:flex;gap:18px}
+    .col{background:var(--card);border-radius:10px;padding:18px;box-shadow:0 6px 18px rgba(4,22,22,0.06);flex:1}
+    .card-title{font-weight:700;margin:0 0 8px}
+    .badge{display:inline-block;padding:6px 10px;border-radius:999px;font-size:12px;background:#eef7f7;color:var(--accent);margin-right:6px}
+    .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+    .btn{background:#fff;border:1px solid #e6efef;padding:8px 12px;border-radius:8px;cursor:pointer}
+    .btn.active{border-color:var(--accent);box-shadow:0 4px 10px rgba(14,124,134,0.12)}
+    .list{margin-top:12px;display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
+    .req{background:linear-gradient(180deg,#ffffff,#fbffff);padding:16px;border-radius:8px;border:1px solid #e8f3f3}
+    .req h3{margin:0;font-size:16px}
+    .meta{margin:8px 0}
+    .labels{display:flex;gap:8px;flex-wrap:wrap}
+    .label{padding:6px 8px;border-radius:6px;font-size:12px;background:#eef7f7;color:var(--accent)}
+    .accept{margin-top:10px;padding:12px;border-radius:6px;background:#f7fffe;border:1px solid #e6f7f6;color:#064b48}
+    .side{font-size:14px;color:var(--muted);margin-top:10px}
+    .chips{display:flex;gap:8px;flex-wrap:wrap}
+    .chip{background:#f0f7f7;padding:8px 10px;border-radius:8px;border-left:4px solid #dff4f4}
+    footer{padding:18px;text-align:center;color:var(--muted);font-size:13px;margin-top:26px}
+    .nf{border-left:4px solid #3b82f6;background:linear-gradient(180deg,#ffffff,#f6fbff)}
+    .f{border-left:4px solid #2e8b57;background:linear-gradient(180deg,#ffffff,#f7fffb)}
+    .trace{background:#eafff7;border-radius:6px;padding:6px;font-size:13px;color:#055c48}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Piezas de GitHub para Práctica 7 · ALQF</h1>
+      <p class="lead">Módulo: Gestión de pedidos y producción — Panadería “Burritos” · Documento interactivo con issues (requisitos), etiquetas y plantilla</p>
+    </div>
+  </header>
+  <main class="container">
+    <section class="grid">
+      <div class="col" style="flex:2">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <h2 style="margin:0 0 6px">Requisitos (Issues)</h2>
+            <div style="color:var(--muted);font-size:13px">Explora los requisitos obtenidos en la práctica. Haz clic en las etiquetas para filtrar.</div>
+          </div>
+          <div style="text-align:right">
+            <div class="filters" id="filters">
+              <button class="btn active" data-filter="*">Todos</button>
+              <button class="btn" data-filter="F">Funcionales</button>
+              <button class="btn" data-filter="NF">No funcionales</button>
+              <button class="btn" data-filter="D">Defectos</button>
+            </div>
+            <div style="margin-top:6px;color:var(--muted);font-size:13px">Buscar: <input id="search" placeholder="texto, RF-01..." style="padding:6px;border-radius:6px;border:1px solid #e6efef" /></div>
+          </div>
+        </div>
+
+        <div class="list" id="list"></div>
+      </div>
+
+      <aside class="col" style="flex:1">
+        <h3 class="card-title">Piezas</h3>
+        <div class="chips" style="margin-bottom:12px">
+          <div class="chip"><strong>Issue</strong><br><small>Un requisito. Tiene número, autor, estado y conversación.</small></div>
+          <div class="chip"><strong>Etiqueta</strong><br><small>Tipo (F, NF, D), prioridad y fuente.</small></div>
+          <div class="chip"><strong>Plantilla</strong><br><small>Formulario que obliga a todos a escribir igual.</small></div>
+        </div>
+
+        <h3 class="card-title">Cómo redactar para que sea verificable</h3>
+        <div style="font-size:14px;color:var(--muted)">
+          - Una sola idea por requisito.<br>
+          - Verificable: incluye un criterio o medida (ej. "Se completa en máximo 3 pantallas").<br>
+          - Trazable: indica la fuente (p. ej. A1, A2, P18).<br>
+        </div>
+
+        <h3 class="card-title" style="margin-top:14px">Funcional / No funcional</h3>
+        <div style="margin-top:8px">
+          <div class="chip f"><strong>Funcional</strong><br><small>Qué debe hacer el sistema. Se verifica con una prueba: ¿lo hace o no?</small></div>
+          <div style="height:8px"></div>
+          <div class="chip nf"><strong>No funcional</strong><br><small>Qué tan bien lo hace. Debe incluir medida: tiempo, tamaño, porcentaje.</small></div>
+        </div>
+
+        <h3 class="card-title" style="margin-top:14px">Plantilla de Issue</h3>
+        <pre style="background:#fbffff;padding:12px;border-radius:8px;border:1px solid #e8f7f7;font-size:13px">Título: RF-01 · Registrar pedido
+
+Descripción: El sistema debe permitir registrar un pedido con nombre del cliente, cantidad de piezas y fecha de entrega.
+
+Fuentes: A1, A2 (P18-19)
+
+Criterios de aceptación:
+- El pedido no se guarda si falta un dato.
+
+Etiquetas: rf, debe, fuente:A1</pre>
+
+        <div style="margin-top:12px;font-size:13px;color:var(--muted)">Más información y la versión completa del documento están en <a href="../README.md">README</a>.</div>
+      </aside>
+    </section>
+
+    <section style="margin-top:22px">
+      <div class="col">
+        <h3 class="card-title">Contexto y evidencias (resumen)</h3>
+        <p style="margin:6px 0;color:var(--muted)">Instrumentos aplicados: entrevista semiestructurada, validación con prototipo en papel, observación de campo y cuestionario a 10 compradores. Fecha principal: 3 sep 2026 y 2 oct 2026.</p>
+
+        <div style="display:flex;gap:12px;margin-top:12px">
+          <div style="flex:1">
+            <strong>Dolor principal</strong>
+            <p class="side">Entrega, cobro y registro: anotaciones manuales y riesgo de olvidar pedidos grandes.</p>
+          </div>
+          <div style="flex:1">
+            <strong>Estrategia de adopción</strong>
+            <p class="side">Peldaño 0 → Meta semestre: Peldaño 2 (registro asistido). Promotor: joven de la familia.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      Documento interactivo generado por el equipo ALQF · Práctica 7 · Fundamentos de Ingeniería de Software · Unidad 3
+    </footer>
+  </main>
+
+  <script>
+    // Data: requisitos extraídos del documento
+    const REQS = [
+      {id:'RF-01', type:'F', title:'Registrar un pedido', desc:'El sistema debe permitir registrar un pedido con nombre del cliente, cantidad de piezas y fecha de entrega al momento de recibirlo.', labels:['rf','debe'], sources:['A1','A2 (P18-19)'], accept:['No se guarda si falta un dato'], trace:'A1, A2'},
+      {id:'RF-02', type:'F', title:'Registrar estado de pago', desc:'El sistema debe registrar el estado de pago de cada pedido (pagado, con anticipo o pendiente).', labels:['rf','debe'], sources:['A1','A2 (P21)'], accept:['Cada pedido muestra uno de los tres estados'], trace:'A1, A2'},
+      {id:'RF-03', type:'F', title:'Registrar anticipo y saldo', desc:'El sistema debe registrar el monto del anticipo y el saldo pendiente de cada pedido.', labels:['rf','debe'], sources:['A1','A2 (P21)'], accept:['Saldo = total − anticipo'], trace:'A1, A2'},
+      {id:'RF-04', type:'F', title:'Pedidos pendientes ordenados', desc:'El sistema debe mostrar los pedidos pendientes ordenados por fecha de entrega.', labels:['rf','debe'], sources:['A1 (visita 2)'], accept:['Lista de la fecha más próxima a la más lejana'], trace:'A1'},
+      {id:'RF-05', type:'F', title:'Cambiar estado de pedido', desc:'El sistema debe permitir cambiar el estado de un pedido (pendiente, en preparación, entregado, cancelado).', labels:['rf','deberia'], sources:['A1','A2'], accept:['El cambio queda con fecha y hora'], trace:'A1,A2'},
+      {id:'RF-06', type:'F', title:'Registrar pagos en efectivo', desc:'El sistema debe permitir registrar pagos en efectivo al momento de la entrega.', labels:['rf','debe'], sources:['Cuestionario'], accept:['Registrar pago y asociarlo al pedido'], trace:'A5'},
+      {id:'RF-09', type:'F', title:'Control de pasos de producción', desc:'El sistema debe registrar y guiar de forma digital la secuencia de los pasos de producción (aprovisionamiento, mezclado, amasado, cortado, boleado, fermentado y horneado).', labels:['rf','debe'], sources:['Entrevista 1','Observación'], accept:['La pantalla resalta el paso en curso'], trace:'A1'},
+      {id:'RF-04b', type:'F', title:'Control de lotes de horneado', desc:'El sistema debe incorporar un módulo de control de lotes que contemple la restricción de capacidad máxima del horno.', labels:['rf','deberia'], sources:['Entrevista 1'], accept:['Calculo de horneadas según capacidad'], trace:'A1'},
+      {id:'RD-01', type:'D', title:'Confirmar origen artesanal', desc:'Cada producto debe indicar que su origen fue confirmado por la organización.', labels:['defecto','debe'], sources:['Cuestionario'], accept:['Etiqueta de verificación en el producto'], trace:'A5'},
+      {id:'RNF-01', type:'NF', title:'Accesibilidad y tamaño de fuente', desc:'La aplicación debe permitir ajustar el tamaño de fuente y botones amplios para facilitar la lectura en todas las interfaces principales.', labels:['rnf','debe'], sources:['Visita 2','Entrevista 1'], accept:['Texto legible ≥18px; botones ≥44×44px'], trace:'A2'}
+    ];
+
+    const list = document.getElementById('list');
+    const filters = document.getElementById('filters');
+    const search = document.getElementById('search');
+
+    function render(items){
+      list.innerHTML = '';
+      items.forEach(r => {
+        const node = document.createElement('div');
+        node.className = 'req ' + (r.type==='NF'?'nf':(r.type==='F'?'f':''));
+        node.innerHTML = `
+          <h3>${r.id} · ${r.title}</h3>
+          <div class="meta"><div class="labels">${r.labels.map(l=>`<span class="label">${l}</span>`).join('')}</div></div>
+          <div style="color:var(--muted);font-size:14px;margin-top:8px">${r.desc}</div>
+          <div class="accept">
+            <strong>Criterios de aceptación</strong>
+            <ul style="margin:8px 0 0;padding-left:18px">${r.accept.map(a=>`<li>${a}</li>`).join('')}</ul>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">
+            <div style="font-size:13px;color:var(--muted)"><strong>Fuente:</strong> ${r.sources.join(', ')}</div>
+            <div class="trace">Trazable: ${r.trace}</div>
+          </div>
+        `;
+        list.appendChild(node);
+      })
+    }
+
+    // initial render
+    render(REQS);
+
+    // filters
+    filters.addEventListener('click', (e)=>{
+      if(e.target.matches('button')){
+        Array.from(filters.querySelectorAll('button')).forEach(b=>b.classList.remove('active'));
+        e.target.classList.add('active');
+        const f = e.target.getAttribute('data-filter');
+        applyFilters(f, search.value.trim());
+      }
+    });
+
+    search.addEventListener('input', ()=>{
+      const active = filters.querySelector('button.active').getAttribute('data-filter');
+      applyFilters(active, search.value.trim());
+    });
+
+    function applyFilters(filter, q){
+      let items = REQS.slice();
+      if(filter && filter !== '*') items = items.filter(i=>i.type===filter || i.type===filter.replace('NF','NF'));
+      if(q){ const qq = q.toLowerCase(); items = items.filter(i=> (i.id+ ' ' + i.title + ' ' + i.desc + ' ' + i.labels.join(' ') ).toLowerCase().includes(qq)); }
+      render(items);
+    }
+  </script>
+</body>
+</html>
