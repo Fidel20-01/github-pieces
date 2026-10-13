@@ -1,23 +1,28 @@
 ---
-name: Plantilla de requisito
-about: Usa esta plantilla para crear requisitos estandarizados
+name: Requisito
+about: Registrar un requisito funcional o no funcional del proyecto
+title: ""
+labels: ["rf", "debe"]
+assignees: ""
 ---
 
-### Título
-RF-XX · Breve título
+## Descripción del requisito
 
-### Descripción
-El sistema debe ... (redactar con la sintaxis "El sistema debe + verbo + objeto + condición")
+Describa claramente el requisito con la sintaxis:
 
-### Fuentes
-A1, A2 (P18), Cuestionario, Observación, etc.
+El sistema debe ...
 
-### Criterios de aceptación
-- Criterio 1 (medible/verificable)
-- Criterio 2
+## Fuentes
 
-### Prioridad
-- Debe / Debería / Podría
+- A1
+- A2
+- A3
+- A4
+- A5
 
-### Etiquetas sugeridas
-rf, debe, fuente:A1
+## Criterio de aceptación
+
+- [ ] El requisito es verificable.
+- [ ] Tiene prioridad asignada.
+- [ ] Tiene fuente documentada.
+- [ ] Se redactó con lenguaje claro y técnico.
