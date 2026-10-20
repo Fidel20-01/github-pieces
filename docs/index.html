@@ -1,173 +1,522 @@
-# Piezas de GitHub
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Piezas de GitHub · Libreta Raíz digital</title>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --panel: #ffffff;
+      --panel-soft: #f3f8fb;
+      --line: #dfeaf1;
+      --text: #15313f;
+      --muted: #5f7280;
+      --primary: #1d6f9f;
+      --primary-strong: #0c4d74;
+      --accent: #2aa18a;
+      --warning: #d97706;
+      --danger: #d94b4b;
+      --shadow: 0 12px 30px rgba(11, 45, 70, 0.08);
+    }
 
-## Repositorio de requisitos y trazabilidad
+    * { box-sizing: border-box; }
 
-El proyecto “Libreta Raíz digital” se gestiona aquí como un repositorio de requisitos con trazabilidad real hacia GitHub Issues, prioridades MoSCoW, procesos BPMN y validación con la organización cliente.
+    body {
+      margin: 0;
+      font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+      background: linear-gradient(180deg, #edf5fb 0%, #f8fafc 100%);
+      color: var(--text);
+    }
 
-### Información clave
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
 
-- Cliente: Panadería “Burritos”
-- Producto: Libreta Raíz digital
-- Equipo: ALQF
-- Documento base: `Practica8.m`
-- Repositorio: `github-pieces`
-- Enfoque: gestión de requisitos y documentación del proyecto
+    header {
+      background: linear-gradient(135deg, var(--primary-strong), var(--primary));
+      color: white;
+      padding: 48px 20px 30px;
+      box-shadow: var(--shadow);
+    }
 
----
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
 
-## 1. Propósito del repositorio
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: end;
+      gap: 20px;
+    }
 
-Este repositorio cumple tres funciones principales:
+    h1 {
+      margin: 0;
+      font-size: clamp(2rem, 3vw, 3rem);
+      line-height: 1.1;
+    }
 
-- servir como registro del DRS y su evolución,
-- organizar los requisitos en Issues y etiquetas,
-- mantener una trazabilidad clara desde requerimientos hasta validación.
+    .lead {
+      margin: 12px 0 0;
+      max-width: 760px;
+      font-size: 1.08rem;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.9);
+    }
 
-La documentación formal sigue siendo el documento de requisitos del proyecto; GitHub se usa como herramienta de trabajo y seguimiento.
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
 
----
+    .badge {
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.18);
+      color: #fff;
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
 
-## 2. Estructura del repositorio
+    main {
+      padding: 30px 0 60px;
+    }
 
-```text
-.
-├── README.md
-├── LICENSE
-├── docs/
-│   ├── index.html
-│   └── README.md
-├── models/
-│   └── README.md
-├── evidencias/
-│   └── README.md
-└── .github/
-```
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0,1fr));
+      gap: 20px;
+    }
 
----
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
 
-## 3. Alcance
+    .col-8 { grid-column: span 8; }
+    .col-4 { grid-column: span 4; }
 
-### Fase 1 — lado productor
+    .panel-head {
+      padding: 22px 22px 14px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, #ffffff, #f9fbfd);
+    }
 
-- registro de pedidos,
-- pago, anticipos y saldos,
-- seguimiento de entregas,
-- control de producción por tanda,
-- registro de mermas,
-- compras de insumos e inventario.
+    .panel-body { padding: 22px; }
 
-### Fase 2 — lado comprador
+    h2 {
+      margin: 0;
+      font-size: 1.3rem;
+    }
 
-- consulta de precio y disponibilidad,
-- pedido en línea,
-- confirmación del productor,
-- punto de entrega,
-- origen artesanal del producto.
+    .subtle {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
 
----
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
 
-## 4. Requisitos principales
+    .chip {
+      border: 1px solid var(--line);
+      background: var(--panel-soft);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
 
-### Requisitos funcionales
+    .chip.active {
+      background: #eaf5ff;
+      border-color: #b7dff7;
+      color: var(--primary-strong);
+      font-weight: 700;
+    }
 
-| ID | Requisito | Prioridad |
-| --- | --- | --- |
-| RF-01 | Registrar pedido con cliente, piezas y fecha de entrega | Debe |
-| RF-02 | Registrar estado de pago | Debe |
-| RF-03 | Registrar anticipo y saldo pendiente | Debe |
-| RF-04 | Mostrar pedidos pendientes ordenados por fecha | Debe |
-| RF-05 | Cambiar el estado de un pedido | Debería |
-| RF-06 | Calcular total del pedido | Debería |
-| RF-07 | Registrar ventas del día | Debe |
-| RF-08 | Generar nota de remisión | Debería |
-| RF-09 | Mostrar pasos de producción | Debe |
-| RF-10 | Impedir saltarse pasos de producción | Debería |
-| RF-11 | Configurar capacidad por horneada | Debería |
-| RF-12 | Calcular número de horneadas | Debería |
-| RF-13 | Registrar horneadas con inicio y fin | Debería |
-| RF-14 | Registrar mermas | Debería |
-| RF-15 | Registrar compras de insumos | Debería |
-| RF-16 | Avisar existencias bajas | Debería |
-| RF-17 | Mostrar precio y disponibilidad | Podría |
-| RF-18 | Solicitar pedido en línea | Podría |
-| RF-19 | Enviar confirmación al comprador | Podría |
-| RF-20 | Elegir punto de entrega | Podría |
-| RF-21 | Mostrar origen artesanal y datos autorizados | Podría |
-| RF-22 | Confirmar origen artesanal del producto | Podría |
+    .search-wrap {
+      margin-top: 14px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
 
-### Requisitos no funcionales
+    input[type="search"] {
+      width: min(100%, 350px);
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--text);
+      font-size: 0.95rem;
+    }
 
-| ID | Requisito | Prioridad |
-| --- | --- | --- |
-| RNF-01 | Texto grande y botones accesibles | Debe |
-| RNF-02 | Registro de pedido en menos de 2 minutos | Debe |
-| RNF-03 | Funcionar sin internet y sincronizar después | Debe |
-| RNF-04 | Restricción de ventas y cuentas al propietario | Debe |
-| RNF-05 | Respaldo diario automático | Debe |
-| RNF-06 | Compatibilidad con celular y tablet | Debe |
-| RNF-07 | Usar vocabulario de la organizaci��n | Debería |
-| RNF-08 | Guardar y consultar en menos de 2 segundos | Debería |
-| RNF-09 | Auditoría por usuario, fecha y hora | Debería |
-| RNF-10 | Mantener tiempos con 200 pedidos activos | Podría |
+    .req-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
 
----
+    .req {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px;
+      box-shadow: 0 8px 18px rgba(16, 43, 58, 0.04);
+      border-left: 6px solid var(--primary);
+    }
 
-## 5. Trazabilidad y procesos
+    .req.nf { border-left-color: #6b7cff; }
+    .req.d { border-left-color: #ef7d4d; }
 
-| Proceso | Descripción |
-| --- | --- |
-| PR-01 | Recepción y registro del pedido |
-| PR-02 | Abastecimiento de insumos |
-| PR-03 | Producción por tanda |
-| PR-04 | Empaque y entrega |
-| PR-05 | Cobro, registro y cierre |
-| PR-06 | Excepciones y mermas |
-| PR-07 | Atención al comprador |
+    .req h3 {
+      margin: 0;
+      font-size: 1.02rem;
+      line-height: 1.35;
+    }
 
-Cada requisito se relaciona con:
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
 
-- su proceso BPMN,
-- la fuente de evidencia,
-- el issue en GitHub,
-- el criterio de aceptación.
+    .tag {
+      display: inline-block;
+      background: #edf6fa;
+      color: var(--primary-strong);
+      border: 1px solid #d9ebf7;
+      border-radius: 999px;
+      padding: 5px 9px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: lowercase;
+    }
 
----
+    .desc {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
 
-## 6. GitHub Issues
+    .accept {
+      margin-top: 12px;
+      background: #f8fbff;
+      border: 1px solid #e7f0f7;
+      border-radius: 12px;
+      padding: 12px 12px 8px;
+    }
 
-Se recomienda usar los siguientes identificadores y etiquetas:
+    .accept strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 0.82rem;
+      color: var(--primary-strong);
+      letter-spacing: 0.02em;
+    }
 
-- `rf` / `rnf`
-- `debe` / `deberia` / `podria`
-- `fase-1` / `fase-2`
-- `pr-01` ... `pr-07`
-- `propuesto`, `validado`, `cambio-solicitado`
+    .accept ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--text);
+      font-size: 0.84rem;
+      line-height: 1.6;
+    }
 
-Ejemplo:
+    .details {
+      margin-top: 12px;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
 
-- Título: `RF-01 · Registrar pedido`
-- Etiquetas: `rf`, `debe`, `fase-1`, `pr-01`, `propuesto`
+    .trace {
+      background: #edf9f4;
+      color: #145c49;
+      border: 1px solid #d8f0e5;
+      border-radius: 999px;
+      padding: 5px 9px;
+      font-weight: 700;
+    }
 
----
+    .side-card {
+      display: grid;
+      gap: 18px;
+      height: 100%;
+    }
 
-## 7. Estado de preparación
+    .mini {
+      background: var(--panel-soft);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px;
+    }
 
-- [x] resumen del proyecto y requisitos principales
-- [x] panel visual en `docs/index.html`
-- [x] estructura para modelos y evidencias
-- [ ] cargar issues restantes
-- [ ] integrar BPMN y validación formal
-- [ ] completar acta y cierre del DRS
+    .mini h3 {
+      margin: 0 0 8px;
+      font-size: 1rem;
+    }
 
----
+    .mini p, .mini li {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 0.88rem;
+    }
 
-## 8. Documentación de referencia
+    ul.clean {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
 
-- `Practica8.m` — documento base del DRS
-- `docs/index.html` — vista visual del repositorio
-- `models/README.md` — modelos y BPMN
-- `evidencias/README.md` — actas y validación
+    ul.clean li + li { margin-top: 8px; }
 
-Este repositorio está pensado para apoyar la gestión del proyecto, pero la fuente de verdad sigue siendo el Documento de Especificación de Requisitos de Software.
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
 
-""
+    .stat {
+      padding: 16px;
+      border-radius: 12px;
+      background: linear-gradient(180deg, #f8fbff, #eef7ff);
+      border: 1px solid #dfeefc;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.4rem;
+      margin-bottom: 6px;
+      color: var(--primary-strong);
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    footer {
+      padding: 24px 20px 50px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 900px) {
+      .col-8, .col-4 { grid-column: span 12; }
+      .stats { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container hero">
+      <div>
+        <h1>Piezas de GitHub</h1>
+        <p class="lead">Módulo de gestión de pedidos y producción · Panadería “Burritos” · Repositorio orientado a trazabilidad, validación y backlog de requisitos.</p>
+        <div class="badge-row">
+          <span class="badge">RF-01 a RF-22</span>
+          <span class="badge">RN-01 a RN-07</span>
+          <span class="badge">RNF-01 a RNF-10</span>
+          <span class="badge">PR-01 a PR-07</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="grid">
+      <div class="panel col-8">
+        <div class="panel-head">
+          <h2>Backlog de requisitos</h2>
+          <p class="subtle">Explora los requisitos del documento DRS y filtra por tipo, prioridad o texto.</p>
+          <div class="filter-row" id="filters">
+            <button class="chip active" data-filter="*">Todos</button>
+            <button class="chip" data-filter="F">Funcionales</button>
+            <button class="chip" data-filter="NF">No funcionales</button>
+            <button class="chip" data-filter="D">Defectos</button>
+          </div>
+          <div class="search-wrap">
+            <label for="search" style="font-size:0.85rem;color:var(--muted);font-weight:600;">Buscar:</label>
+            <input id="search" type="search" placeholder="RF-01, pedido, precio..." />
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="stats">
+            <div class="stat"><strong id="count-all">0</strong><span>Total</span></div>
+            <div class="stat"><strong id="count-func">0</strong><span>Funcionales</span></div>
+            <div class="stat"><strong id="count-nf">0</strong><span>No funcionales</span></div>
+          </div>
+          <div class="req-list" id="list"></div>
+        </div>
+      </div>
+
+      <div class="panel col-4">
+        <div class="panel-head">
+          <h2>Resumen del proyecto</h2>
+        </div>
+        <div class="panel-body side-card">
+          <div class="mini">
+            <h3>Contexto</h3>
+            <p>La Panadería “Burritos” trabaja con pedidos grandes, ventas diarias, seguimiento manual y producción artesanal. El sistema busca apoyar ese proceso sin romper la forma de trabajo actual.</p>
+          </div>
+
+          <div class="mini">
+            <h3>Objetivos clave</h3>
+            <ul class="clean">
+              <li>• Registrar pedidos al instante.</li>
+              <li>• Controlar anticipos, saldos y pagos.</li>
+              <li>• Guiar la producción por pasos.</li>
+              <li>• Reducir pérdidas y errores de cálculo.</li>
+            </ul>
+          </div>
+
+          <div class="mini">
+            <h3>Fases</h3>
+            <ul class="clean">
+              <li>• Fase 1: pedidos, producción, inventario y cobros.</li>
+              <li>• Fase 2: consulta, pedido en línea y confirmación al comprador.</li>
+            </ul>
+          </div>
+
+          <div class="mini">
+            <h3>Metodología</h3>
+            <p>Se trabaja con trazabilidad de requisitos en GitHub, priorización MoSCoW, vinculación con BPMN y validación con la organización cliente.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Documento base: Practica8.m · Equipo ALQF · Módulo: Libreta Raíz digital · Repo: Fidel20-01/github-pieces
+  </footer>
+
+  <script>
+    const REQS = [
+      {id:'RF-01', type:'F', title:'Registrar pedido', labels:['rf','debe','fase-1','pr-01'], sources:['A1','A2 (P18-19)'], trace:'PR-01 / #1, #2', desc:'El sistema debe permitir registrar un pedido con nombre del cliente, cantidad de piezas y fecha de entrega al momento de recibirlo.', accept:['No guarda el pedido si falta algún dato.','El pedido guardado aparece en la lista de pedidos pendientes.']},
+      {id:'RF-02', type:'F', title:'Registrar estado de pago', labels:['rf','debe','fase-1','pr-05'], sources:['A1','A2 (P21)','A4'], trace:'PR-05 / #16, #18', desc:'El sistema debe registrar el estado de pago (pagado, con anticipo o pendiente).', accept:['Cada pedido muestra exactamente uno de los tres estados.','Se pasa a “con anticipo” al capturar un anticipo válido.']},
+      {id:'RF-03', type:'F', title:'Registrar anticipo y saldo', labels:['rf','debe','fase-1','pr-05'], sources:['A1','A2 (P21)'], trace:'PR-05 / #16, #18', desc:'El sistema debe registrar el anticipo y calcula el saldo pendiente del pedido.', accept:['Saldo = total − anticipo.','No admite anticipo mayor al total.']},
+      {id:'RF-04', type:'F', title:'Mostrar pedidos pendientes', labels:['rf','debe','fase-1','pr-01'], sources:['A1 (visita 2)'], trace:'PR-01 / #2, #8', desc:'El sistema debe mostrar los pedidos pendientes ordenados por fecha de entrega.', accept:['Lista ordenada de la fecha más próxima a la más lejana.','Excluye entregados y cancelados.']},
+      {id:'RF-05', type:'F', title:'Cambiar estado del pedido', labels:['rf','deberia','fase-1','pr-01'], sources:['A1','A2'], trace:'PR-01, PR-03, PR-05 / #2, #8, #19', desc:'El sistema debe permitir cambiar el estado de un pedido.', accept:['Cada cambio queda guardado con fecha y hora.','Los estados incluyen pendiente, en preparación, entregado y cancelado.']},
+      {id:'RF-06', type:'F', title:'Calcular total del pedido', labels:['rf','deberia','fase-1','pr-01'], sources:['A2 (P22)'], trace:'PR-01, PR-05 / #2, #17', desc:'El sistema debe calcular el total del pedido a partir de piezas y precio por pieza vigente.', accept:['Coincide con el cálculo manual en 5 pedidos de prueba.']},
+      {id:'RF-07', type:'F', title:'Registrar ventas del día', labels:['rf','debe','fase-1','pr-05'], sources:['A2 (P29)'], trace:'PR-05 / #17', desc:'El sistema debe registrar las ventas del día y mostrar el total diario.', accept:['El total diario equivale a la suma de las ventas del día.','Coincide con la suma manual en al menos 10 ventas.']},
+      {id:'RF-08', type:'F', title:'Generar nota de remisión', labels:['rf','deberia','fase-1','pr-04'], sources:['A4'], trace:'PR-04, PR-05 / #15c, #19', desc:'El sistema debe generar una nota de remisión por cada pedido entregado.', accept:['Incluye folio, fecha, cliente, piezas y monto.']},
+      {id:'RF-09', type:'F', title:'Mostrar pasos de producción', labels:['rf','debe','fase-1','pr-03'], sources:['A1'], trace:'PR-03 / #10 a #14a', desc:'El sistema debe mostrar los siete pasos de producción y el paso actual de cada tanda.', accept:['Se muestran en el orden correcto.','Se resalta el paso activo.']},
+      {id:'RF-10', type:'F', title:'Impedir saltarse pasos', labels:['rf','deberia','fase-1','pr-03'], sources:['A1'], trace:'PR-03 / #11 a #14a', desc:'El sistema debe impedir marcar un paso como completado si el anterior sigue pendiente.', accept:['Muestra una alerta y no cambia el estado del paso.']},
+      {id:'RF-11', type:'F', title:'Configurar capacidad de horneada', labels:['rf','deberia','fase-1','pr-03'], sources:['A1'], trace:'PR-03 / #14a', desc:'El sistema debe permitir configurar la capacidad máxima de piezas por horneada.', accept:['Valor entero mayor que cero.','Valor inicial propuesto: 40.']},
+      {id:'RF-12', type:'F', title:'Calcular número de horneadas', labels:['rf','deberia','fase-1','pr-03'], sources:['A1'], trace:'PR-03 / #4b, #14a', desc:'El sistema debe calcular el número de horneadas necesarias para un pedido.', accept:['Con capacidad 40 y 300 piezas, devuelve 8 horneadas.']},
+      {id:'RF-13', type:'F', title:'Registrar horneadas', labels:['rf','deberia','fase-1','pr-03'], sources:['A1'], trace:'PR-03 / #14a', desc:'El sistema debe registrar cada horneada con piezas, hora de inicio y hora de fin.', accept:['Se calcula duración.','No admite hora final anterior a la inicial.']},
+      {id:'RF-14', type:'F', title:'Registrar mermas', labels:['rf','deberia','fase-1','pr-06'], sources:['A2 (P12, P17)','A1'], trace:'PR-06 / #12x a #12z, #15x a #15y', desc:'El sistema debe registrar las mermas con cantidad y causa.', accept:['No se guarda sin cantidad ni causa.']},
+      {id:'RF-15', type:'F', title:'Registrar compras de insumos', labels:['rf','deberia','fase-1','pr-02'], sources:['A2 (P10)','A1'], trace:'PR-02 / #5, #6', desc:'El sistema debe registrar compras de insumos con cantidad y costo.', accept:['La existencia del insumo aumenta según la cantidad comprada.']},
+      {id:'RF-16', type:'F', title:'Aviso de existencias bajas', labels:['rf','deberia','fase-1','pr-02'], sources:['A2 (P11)'], trace:'PR-02 / #7', desc:'El sistema debe avisar cuando la existencia de un insumo baje del mínimo configurado.', accept:['La alerta aparece al quedar por debajo del mínimo.']},
+      {id:'RF-17', type:'F', title:'Mostrar precio y disponibilidad', labels:['rf','podria','fase-2','pr-07'], sources:['A3 (P13)'], trace:'PR-07 / sin elemento BPMN', desc:'El sistema debe mostrar precio y disponibilidad de cemitas antes de que el comprador acuda.', accept:['Muestra la disponibilidad con fecha y hora de actualización.']},
+      {id:'RF-18', type:'F', title:'Solicitar pedido en línea', labels:['rf','podria','fase-2','pr-07'], sources:['A3 (P14)'], trace:'PR-07 / flujo hacia #1', desc:'El sistema debe permitir al comprador solicitar un pedido en línea.', accept:['El pedido solicitado aparece en la lista del productor.']},
+      {id:'RF-19', type:'F', title:'Enviar confirmación', labels:['rf','podria','fase-2','pr-07'], sources:['A3 (P15)'], trace:'PR-07 / flujo desde #19', desc:'El sistema debe enviar una confirmación al comprador al registrar su pedido.', accept:['El comprador recibe la confirmación cuando el productor registra el pedido.']},
+      {id:'RF-20', type:'F', title:'Elegir punto de entrega', labels:['rf','podria','fase-2','pr-04'], sources:['A5 (6 de 10)'], trace:'PR-07, PR-04 / #15b, #15c', desc:'El sistema debe permitir elegir un punto de entrega dentro de Tlaxiaco.', accept:['El comprador elige de una lista de puntos configurados por el productor.']},
+      {id:'RF-21', type:'F', title:'Mostrar origen artesanal y datos autorizados', labels:['rf','podria','fase-2','pr-07'], sources:['A5 (3 de 10)'], trace:'PR-07 / sin elemento BPMN', desc:'El sistema debe mostrar foto, nombre y comunidad de quien elaboró el producto con autorización.', accept:['No muestra datos sin autorización.']},
+      {id:'RF-22', type:'F', title:'Confirmar origen artesanal', labels:['rf','podria','fase-2','pr-07'], sources:['A5 (4 de 10)'], trace:'PR-07 / sin elemento BPMN', desc:'El sistema debe indicar que la organización confirmó el origen artesanal del producto.', accept:['La indicación solo aparece si existe una confirmación registrada.']},
+      {id:'RNF-01', type:'NF', title:'Texto y botones accesibles', labels:['rnf','debe','fase-1'], sources:['A2 (P33)','A4'], trace:'PR-01, PR-05 / #2, #17, #18', desc:'El sistema debe ofrecer texto de al menos 18 px y botones de al menos 44×44 px en pantallas principales.', accept:['Inspección visual de las pantallas principales.']},
+      {id:'RNF-02', type:'NF', title:'Registro en menos de 2 minutos', labels:['rnf','debe','fase-1'], sources:['A2 (P36)'], trace:'PR-01 / #1, #2', desc:'El sistema debe permitir registrar un pedido en menos de 2 minutos sin capacitación previa.', accept:['Prueba cronometrada con 3 usuarios nuevos.']},
+      {id:'RNF-03', type:'NF', title:'Sincronización sin internet', labels:['rnf','debe','fase-1'], sources:['A2 (P32)'], trace:'PR-01, PR-05 / #2, #17', desc:'El sistema debe permitir registrar pedidos y ventas sin internet y sincronizarlos al reconectarse.', accept:['20 registros en modo avión.','Sin pérdidas ni duplicados.']},
+      {id:'RNF-04', type:'NF', title:'Permisos por rol', labels:['rnf','debe','fase-1'], sources:['A2 (P34)'], trace:'PR-05, PR-02 / #17, #18, #21', desc:'El sistema debe restringir las pantallas de ventas y cuentas al usuario con rol de propietario.', accept:['Con rol de panadero no se puede abrir la pantalla.']},
+      {id:'RNF-05', type:'NF', title:'Respaldo diario', labels:['rnf','debe','fase-1'], sources:['A2 (P35)'], trace:'Todos / #2, #6, #17, #18', desc:'El sistema debe respaldar los datos automáticamente cada día.', accept:['Existe copia restaurable del día anterior.']},
+      {id:'RNF-06', type:'NF', title:'Compatible con móvil y tablet', labels:['rnf','debe','fase-1'], sources:['A3 (P17)','A2 (P30)'], trace:'Todos / carriles Administración y Producción', desc:'El sistema debe funcionar en celular y tablet.', accept:['Prueba funcional en dispositivos con pantallas desde 360 px.']},
+      {id:'RNF-07', type:'NF', title:'Vocabulario de la organización', labels:['rnf','deberia','fase-1'], sources:['A4'], trace:'PR-01 a PR-06 / tareas del BPMN', desc:'El sistema debe usar vocabulario de la organización.', accept:['Se revisan los textos con A1.']},
+      {id:'RNF-08', type:'NF', title:'Tiempo de respuesta', labels:['rnf','deberia','fase-1'], sources:['A2 (P28, P37)'], trace:'PR-01, PR-05 / #2, #17', desc:'El sistema debe guardar y consultar un pedido en menos de 2 segundos.', accept:['95 % de 20 operaciones en menos de 2 s.']},
+      {id:'RNF-09', type:'NF', title:'Auditoría de cambios', labels:['rnf','deberia','fase-1'], sources:['Guía P46'], trace:'PR-01, PR-02, PR-05 / #2, #6, #18', desc:'El sistema debe registrar usuario, fecha y hora de cada cambio en pedidos, pagos e inventario.', accept:['Queda evidencia del cambio con datos del usuario y la fecha.']},
+      {id:'RNF-10', type:'NF', title:'Capacidad para 200 pedidos activos', labels:['rnf','podria','fase-1'], sources:['A2'], trace:'PR-01, PR-03 / #2, #14a', desc:'El sistema debe mantener tiempos de respuesta con hasta 200 pedidos activos.', accept:['Se mantienen los tiempos de RNF-08 en la prueba.']},
+      {id:'RD-01', type:'D', title:'Confirmar origen artesanal', labels:['defecto','debe'], sources:['A5'], trace:'PR-07', desc:'Cada producto debe indicar que su origen fue confirmado por la organización.', accept:['La afirmación solo se muestra con confirmación vigente.']}
+    ];
+
+    const list = document.getElementById('list');
+    const filters = document.getElementById('filters');
+    const search = document.getElementById('search');
+
+    function render(items) {
+      list.innerHTML = '';
+      items.forEach((item) => {
+        const node = document.createElement('article');
+        node.className = `req ${item.type === 'NF' ? 'nf' : item.type === 'D' ? 'd' : ''}`;
+        node.innerHTML = `
+          <h3>${item.id} · ${item.title}</h3>
+          <div class="meta">${item.labels.map(label => `<span class="tag">${label}</span>`).join('')}</div>
+          <div class="desc">${item.desc}</div>
+          <div class="accept">
+            <strong>Criterios de aceptación</strong>
+            <ul>${item.accept.map(a => `<li>${a}</li>`).join('')}</ul>
+          </div>
+          <div class="details">
+            <div><strong>Fuente:</strong> ${item.sources.join(', ')}</div>
+            <div class="trace">${item.trace}</div>
+          </div>
+        `;
+        list.appendChild(node);
+      });
+
+      const total = items.length;
+      document.getElementById('count-all').textContent = total;
+      document.getElementById('count-func').textContent = items.filter(i => i.type === 'F').length;
+      document.getElementById('count-nf').textContent = items.filter(i => i.type === 'NF').length;
+    }
+
+    function applyFilters(type, query) {
+      let items = [...REQS];
+      if (type && type !== '*') {
+        items = items.filter(item => item.type === type);
+      }
+      if (query) {
+        const q = query.toLowerCase();
+        items = items.filter(item => (
+          `${item.id} ${item.title} ${item.desc} ${item.labels.join(' ')}`.toLowerCase().includes(q)
+        ));
+      }
+      render(items);
+    }
+
+    filters.addEventListener('click', (event) => {
+      const button = event.target.closest('button');
+      if (!button) return;
+      [...filters.querySelectorAll('button')].forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+      const type = button.dataset.filter;
+      applyFilters(type, search.value.trim());
+    });
+
+    search.addEventListener('input', () => {
+      const active = filters.querySelector('.chip.active')?.dataset.filter || '*';
+      applyFilters(active, search.value.trim());
+    });
+
+    render(REQS);
+  </script>
+</body>
+</html>
