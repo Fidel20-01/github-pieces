@@ -12,6 +12,14 @@ Describa claramente el requisito con la sintaxis:
 
 El sistema debe ...
 
+## Documento base
+
+- Proyecto: Libreta Raíz digital
+- Documento: `Practica8.m`
+- Cliente: Panadería “Burritos”
+- Fase: Fase 1 / Fase 2
+- ID del requisito: RF-XX / RNF-XX
+
 ## Fuentes
 
 - A1
@@ -20,9 +28,16 @@ El sistema debe ...
 - A4
 - A5
 
+## Proceso / caso de uso
+
+- PR-XX
+- CU-XX
+
 ## Criterio de aceptación
 
 - [ ] El requisito es verificable.
 - [ ] Tiene prioridad asignada.
 - [ ] Tiene fuente documentada.
 - [ ] Se redactó con lenguaje claro y técnico.
+- [ ] Está ligado al DRS de la práctica 8.
+
