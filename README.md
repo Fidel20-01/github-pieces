@@ -1,4 +1,4 @@
-# Piezas de GitHub
+#CEMITAS
 
 Repositorio de gestión de requisitos para el módulo de pedidos y producción de la Panadería “Burritos”, basado en el Documento de Especificación de Requisitos de Software (DRS) de la Práctica 8.
 
