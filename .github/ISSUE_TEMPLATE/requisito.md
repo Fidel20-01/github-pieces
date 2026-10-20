@@ -19,6 +19,7 @@ El sistema debe ...
 - Cliente: Panadería “Burritos”
 - Fase: Fase 1 / Fase 2
 - ID del requisito: RF-XX / RNF-XX
+- Prioridad: Debe / Debería / Podría
 
 ## Fuentes
 
@@ -40,4 +41,5 @@ El sistema debe ...
 - [ ] Tiene fuente documentada.
 - [ ] Se redactó con lenguaje claro y técnico.
 - [ ] Está ligado al DRS de la práctica 8.
+- [ ] Tiene relación con un objetivo del producto O1/O2/O3.
 

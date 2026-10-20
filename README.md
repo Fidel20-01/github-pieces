@@ -1,58 +1,98 @@
 # Piezas de GitHub
 
-## Backlog de requisitos alineado al DRS
+## Backlog de requisitos del proyecto “Libreta Raíz digital”
 
-Este repositorio funciona como inventario y trazabilidad de requisitos para el proyecto de la Panadería “Burritos”, basado en el Documento de Especificación de Requisitos de Software (DRS) de la Práctica 8.
+Este repositorio funciona como tablero de gestión de requisitos para el módulo de pedidos y producción de la Panadería “Burritos”, vinculado directamente al Documento de Especificación de Requisitos de Software (DRS) de la Práctica 8.
 
-- Documento base: `Practica8.m`
 - Cliente: Panadería “Burritos”, Tlaxiaco, Oaxaca
-- Producto: “Libreta Raíz digital”
+- Producto: Libreta Raíz digital
 - Equipo: ALQF
-- Área: Módulo de gestión de pedidos y producción
+- Documento base: `Practica8.m`
+- Enfoque: trazabilidad de requisitos en GitHub Issues, con prioridad MoSCoW, procesos BPMN, casos de uso UML y validación con la organización
 
-### Relación con el documento
+---
 
-El contenido de este repositorio está vinculado a los requisitos funcionales (RF) y a la estructura del DRS, con prioridad MoSCoW, fuentes, procesos BPMN y casos de uso UML definidos en el documento original.
+## 1. Relación con el documento base
 
-| ID | Requisito | Prioridad | Fuente | PR / CU | Estado |
-| --- | --- | --- | --- | --- | --- |
-| RF-01 | Registrar pedido con cliente, piezas y fecha de entrega | Debe | A1, A2 (P18-19) | PR-01 / CU-01 | Propuesto |
-| RF-02 | Registrar estado de pago (pagado, con anticipo o pendiente) | Debe | A1, A2 (P21), A4 | PR-01, PR-03 / CU-03 | Propuesto |
-| RF-03 | Registrar anticipo y saldo pendiente | Debe | A1, A2 (P21) | PR-03 / CU-03 | Propuesto |
-| RF-04 | Mostrar pedidos pendientes ordenados por fecha de entrega | Debe | A1 (visita 2) | PR-01 / CU-02 | Propuesto |
-| RF-05 | Cambiar estado de pedido (pendiente, en preparación, entregado, cancelado) | Debería | A1, A2 | PR-01 / CU-03 | Propuesto |
-| RF-06 | Calcular total del pedido según piezas y precio vigente | Debería | A2 (P22) | PR-01 / CU-01 | Propuesto |
-| RF-07 | Registrar ventas del día y total diario | Debe | A2 (P29) | PR-03 / CU-05 | Propuesto |
-| RF-08 | Generar nota de remisión por pedido entregado | Debería | A4 | PR-03 / CU-04 | Propuesto |
-| RF-09 | Mostrar los siete pasos de producción y el paso actual de cada tanda | Debe | A1 | PR-02 / CU-06 | Propuesto |
-| RF-10 | Impedir completar un paso si el anterior sigue pendiente | Debería | A1 | PR-02 / CU-06 | Propuesto |
-| RF-11 | Configurar capacidad máxima de piezas por horneada | Debería | A1 | PR-02 / CU-07 | Propuesto |
-| RF-12 | Calcular número de horneadas necesarias | Debería | A1 | PR-02 / CU-07 | Propuesto |
-| RF-13 | Registrar cada horneada con piezas, inicio y fin | Debería | A1 | PR-02 / CU-07 | Propuesto |
-| RF-14 | Registrar mermas con cantidad y causa | Debería | A2 (P12, P17), A1 | PR-04 / CU-08 | Propuesto |
-| RF-15 | Registrar compras de insumos con cantidad y costo | Debería | A2 (P10), A1 | PR-04 / CU-09 | Propuesto |
-| RF-16 | Avisar cuando la existencia de un insumo baja del mínimo | Debería | A2 (P11) | PR-04 / CU-09 | Propuesto |
-| RF-17 | Mostrar precio y disponibilidad antes de acudir el comprador | Podría | A3 (P13) | PR-05 / CU-10 | Propuesto |
-| RF-18 | Permitir solicitar pedido en línea | Podría | A3 (P14) | PR-05 / CU-11 | Propuesto |
-| RF-19 | Enviar confirmación del productor al registrar el pedido | Podría | A3 (P15) | PR-05 / CU-11 | Propuesto |
-| RF-20 | Permitir elegir punto de entrega dentro de Tlaxiaco | Podría | A5 (6 de 10) | PR-05 / CU-11 | Propuesto |
-| RF-21 | Mostrar foto, nombre y comunidad del productor con autorización | Podría | A3 (P16) | PR-05 / CU-12 | Propuesto |
+El contenido del repositorio está alineado con los siguientes elementos del DRS:
 
-> Nota: el DRS menciona además requisitos no funcionales RNF-01 a RNF-10 para la Fase 1; el contenido visible del documento entregado en esta práctica se centra en los requisitos funcionales principales y en su trazabilidad para gestión en GitHub Issues.
+- Requisitos funcionales: RF-01 a RF-22
+- Reglas de negocio: RN-01 a RN-05
+- Requisitos no funcionales: RNF-01 a RNF-10
+- Procesos de negocio: PR-01 a PR-05
+- Casos de uso: CU-01 a CU-12
+- Objetivos del producto: O1, O2, O3
 
-## Objetivos del producto
+---
 
-- O1. Registrar cada pedido al momento de recibirlo.
-- O2. Conocer el saldo pendiente de cada pedido sin revisar libretas.
-- O3. Obtener el cierre del día sin sumar manualmente.
+## 2. Tablero Kanban de requisitos
 
-## Procesos y casos de uso base
+| Backlog | En análisis | En revisión | Aceptado |
+| --- | --- | --- | --- |
+| RF-01 Registrar pedido | RF-03 Anticipo y saldo | RF-09 Mostrar pasos de producción | RF-07 Ventas del día |
+| RF-02 Estado de pago | RF-05 Estado de pedido | RF-13 Registrar horneadas | RF-04 Pedidos pendientes |
+| RF-06 Calcular total | RF-11 Capacidad de horneada | RF-14 Registrar mermas | RF-16 Existencias bajas |
+| RF-08 Nota de remisión | RF-12 Horneadas necesarias | RF-15 Compras de insumos | RF-17 Precio y disponibilidad |
+| RF-10 Secuencia de pasos | RF-18 Solicitar pedido en línea | RF-19 Confirmación al comprador |  |
+| RF-20 Punto de entrega | RF-21 Origen artesanal |  |  |
+| RNF-03 Sincronización sin internet | RNF-04 Seguridad por rol |  |  |
+| RNF-01 Usabilidad | RNF-02 Registro en menos de 2 minutos |  |  |
+
+> El tablero anterior es una representación del flujo de trabajo recomendado para GitHub Projects. Los estados reales se gestionan en la sección de Issues y Projects del repositorio.
+
+---
+
+## 3. Requisitos priorizados
+
+| ID | Título | Prioridad | Fuente | PR / CU |
+| --- | --- | --- | --- | --- |
+| RF-01 | Registrar pedido con cliente, piezas y fecha de entrega | Debe | A1, A2 (P18-19) | PR-01 / CU-01 |
+| RF-02 | Registrar estado de pago | Debe | A1, A2 (P21), A4 | PR-01, PR-03 / CU-03 |
+| RF-03 | Registrar anticipo y saldo pendiente | Debe | A1, A2 (P21) | PR-03 / CU-03 |
+| RF-04 | Mostrar pedidos pendientes ordenados por fecha | Debe | A1 (visita 2) | PR-01 / CU-02 |
+| RF-05 | Cambiar el estado de un pedido | Debería | A1, A2 | PR-01 / CU-03 |
+| RF-06 | Calcular total del pedido | Debería | A2 (P22) | PR-01 / CU-01 |
+| RF-07 | Registrar ventas del día y mostrar total diario | Debe | A2 (P29) | PR-03 / CU-05 |
+| RF-08 | Generar nota de remisión | Debería | A4 | PR-03 / CU-04 |
+| RF-09 | Mostrar los siete pasos de producción | Debe | A1 | PR-02 / CU-06 |
+| RF-10 | Impedir saltar pasos de producción | Debería | A1 | PR-02 / CU-06 |
+| RF-11 | Configurar capacidad máxima por horneada | Debería | A1 | PR-02 / CU-07 |
+| RF-12 | Calcular número de horneadas necesarias | Debería | A1 | PR-02 / CU-07 |
+| RF-13 | Registrar horneadas con inicio y fin | Debería | A1 | PR-02 / CU-07 |
+| RF-14 | Registrar mermas | Debería | A2 (P12, P17), A1 | PR-04 / CU-08 |
+| RF-15 | Registrar compras de insumos | Debería | A2 (P10), A1 | PR-04 / CU-09 |
+| RF-16 | Avisar existencias bajas | Debería | A2 (P11) | PR-04 / CU-09 |
+| RF-17 | Mostrar precio y disponibilidad para comprador | Podría | A3 (P13) | PR-05 / CU-10 |
+| RF-18 | Solicitar pedido en línea | Podría | A3 (P14) | PR-05 / CU-11 |
+| RF-19 | Enviar confirmación del productor | Podría | A3 (P15) | PR-05 / CU-11 |
+| RF-20 | Elegir punto de entrega | Podría | A5 (6 de 10) | PR-05 / CU-11 |
+| RF-21 | Mostrar origen artesanal y datos autorizados | Podría | A5 (3-4 de 10) | PR-05 / CU-12 |
+| RNF-01 | Texto mínimo y botones accesibles | Debe | A2 (P33), A4 | N/A |
+| RNF-02 | Registro de pedido en menos de 2 minutos | Debe | A2 (P36) | N/A |
+| RNF-03 | Funcionar sin internet y sincronizar después | Debe | A2 (P32) | N/A |
+| RNF-04 | Restricción de ventas y cuentas a propietario | Debe | A2 (P34) | N/A |
+
+---
+
+## 4. Objetivos de negocio y trazabilidad
+
+- O1. Que todo pedido recibido quede registrado en el momento de recibirlo. → RF-01
+- O2. Que la propietaria conozca el saldo pendiente de cada pedido sin revisar libretas. → RF-03, RF-04
+- O3. Que el cierre del día se obtenga sin sumar a mano. → RF-07
+
+---
+
+## 5. Procesos de negocio y casos de uso base
+
+### Procesos BPMN
 
 - PR-01: Registro y seguimiento de pedidos
 - PR-02: Producción por tanda
 - PR-03: Entrega, cobro y cierre del día
 - PR-04: Control de insumos y mermas
 - PR-05: Atención al comprador (Fase 2)
+
+### Casos de uso UML
 
 - CU-01: Registrar pedido
 - CU-02: Consultar pedidos pendientes
@@ -67,48 +107,43 @@ El contenido de este repositorio está vinculado a los requisitos funcionales (R
 - CU-11: Solicitar pedido y recibir confirmación
 - CU-12: Conocer origen artesanal
 
-## Issues sugeridos
+---
 
-Cada requisito del DRS puede representarse como un issue individual con la misma identificación (RF-XX o RNF-XX), siguiendo el esquema de GitHub Issues del repositorio.
-
-- [RF-01 · Registrar pedido](https://github.com/Fidel20-01/github-pieces/issues)
-- [RF-02 · Registrar estado de pago](https://github.com/Fidel20-01/github-pieces/issues)
-- [RF-03 · Registrar anticipo y saldo](https://github.com/Fidel20-01/github-pieces/issues)
-- [RF-04 · Mostrar pedidos pendientes](https://github.com/Fidel20-01/github-pieces/issues)
-- [RF-05 · Cambiar estado del pedido](https://github.com/Fidel20-01/github-pieces/issues)
-- [RF-06 · Calcular total del pedido](https://github.com/Fidel20-01/github-pieces/issues)
-- [RF-07 · Registrar ventas del día](https://github.com/Fidel20-01/github-pieces/issues)
-- [RF-08 · Generar nota de remisión](https://github.com/Fidel20-01/github-pieces/issues)
-- [RF-09 · Mostrar pasos de producción](https://github.com/Fidel20-01/github-pieces/issues)
-- [RF-10 · Validar secuencia de pasos](https://github.com/Fidel20-01/github-pieces/issues)
-- [RF-11 · Configurar capacidad de horneada](https://github.com/Fidel20-01/github-pieces/issues)
-- [RF-12 · Calcular horneadas necesarias](https://github.com/Fidel20-01/github-pieces/issues)
-- [RF-13 · Registrar horneadas](https://github.com/Fidel20-01/github-pieces/issues)
-- [RF-14 · Registrar mermas](https://github.com/Fidel20-01/github-pieces/issues)
-- [RF-15 · Registrar compras de insumos](https://github.com/Fidel20-01/github-pieces/issues)
-- [RF-16 · Avisar existencias bajas](https://github.com/Fidel20-01/github-pieces/issues)
-- [RF-17 · Mostrar precio y disponibilidad](https://github.com/Fidel20-01/github-pieces/issues)
-- [RF-18 · Solicitar pedido en línea](https://github.com/Fidel20-01/github-pieces/issues)
-- [RF-19 · Confirmación al comprador](https://github.com/Fidel20-01/github-pieces/issues)
-- [RF-20 · Elegir punto de entrega](https://github.com/Fidel20-01/github-pieces/issues)
-- [RF-21 · Mostrar origen artesanal](https://github.com/Fidel20-01/github-pieces/issues)
-
-## Etiquetas recomendadas
+## 6. Etiquetas recomendadas para Issues
 
 - `rf` / `rnf` — tipo de requisito
-- `debe` / `deberia` / `podria` — prioridad MoSCoW
-- `fuente:A1` / `fuente:A2` / `fuente:A3` / `fuente:A4` / `fuente:A5`
+- `debe` / `deberia` / `podria` — prioridad
 - `fase-1` / `fase-2`
-- `pr-01` / `pr-02` / `pr-03` / `pr-04` / `pr-05`
+- `fuente:A1` / `fuente:A2` / `fuente:A3` / `fuente:A4` / `fuente:A5`
+- `pr-01` ... `pr-05`
 - `cu-01` ... `cu-12`
-
-## Resumen
-
-Este repositorio está diseñado para representar el trabajo de requisitos como backlog gestionable en GitHub, manteniendo la trazabilidad con el DRS de la Práctica 8 y sin perder la relación con la organización cliente, el proceso de negocio y los casos de uso del sistema.
 
 ---
 
-## Repositorio base de referencia
+## 7. Propuesta de flujo de trabajo en GitHub
 
-Este contenido está directamente ligado al documento de requisitos del equipo ALQF y no debe interpretarse como un documento independiente del proyecto; sirve como índice técnico para la gestión formal de requisitos en GitHub.
+1. Cada requisito del DRS se convierte en un issue con su ID oficial.
+2. Se etiqueta con prioridad, fuente y fase.
+3. Se asocia con su proceso PR y su caso de uso CU.
+4. Se mueve en el Project con la lógica de tablero Kanban.
+5. Se valida con la organización cliente y el docente antes de cerrar el requisito.
+
+---
+
+## 8. Resumen ejecutivo
+
+Este repositorio funciona como una demostración práctica de gestión de requisitos en GitHub para la asignatura de Fundamentos de Ingeniería de Software. Su objetivo no es reemplazar el DRS, sino materializarlo en un backlog ejecutable, con trazabilidad clara, lenguaje técnico y vinculación directa a la realidad del negocio y a la evidencia de la Práctica 8.
+
+---
+
+## 9. Repositorio de referencia
+
+El contenido del repositorio está ligado a:
+
+- Documento de requisitos: `Practica8.m`
+- Cliente: Panadería “Burritos”
+- Producto: Libreta Raíz digital
+- Equipo ALQF
+
+La gestión en GitHub debe reflejar la estructura del documento, no una versión independiente del mismo.
 
